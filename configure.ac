@@ -4,6 +4,8 @@ dnl This has been updated to use autoconf-2.52.
 AC_INIT
 AC_CONFIG_SRCDIR([common/attributes.c])
 
+AC_CHECK_TOOL(AR, ar, false)
+
 dnl Random substitution variables
 if test -f VERSION; then
 	RWHOIS_VERSION=`cat VERSION`

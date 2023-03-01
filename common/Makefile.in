@@ -1,7 +1,7 @@
 
 # programs
 CC      = @CC@
-AR      = ar
+AR      = @AR@
 RANLIB  = @RANLIB@
 SHELL   = /bin/sh
 
