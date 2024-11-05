@@ -33,12 +33,12 @@ libraries:
 	  (cd $$dir; $(MAKE) $(MFLAGS) all) || exit 1; \
 	done
 
-libwrap:
+libwrap: libraries
 	@echo "Making $(LIBWRAP)"
 	(cd $(LIBWRAP_DIR); $(MAKE) $(MFLAGS) $(LIBWRAP_MFLAGS) config-check; \
 	$(MAKE) $(MFLAGS) $(LIBWRAP_MFLAGS) libwrap.a)
 
-binaries:
+binaries: libraries @LIBWRAP@
 	@for dir in $(BIN_SUBDIRS); do \
 	  echo "making all in $$dir"; \
 	  (cd $$dir; $(MAKE) $(MFLAGS) all) || exit 1; \
