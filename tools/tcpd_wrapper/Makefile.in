@@ -389,7 +389,7 @@ RANLIB	= ranlib	# have ranlib (BSD-ish UNIX)
 ARFLAGS	= rv		# most systems
 #ARFLAGS= rvs		# IRIX 4.0.x
 
-AR	= ar
+AR	= @AR@
 #AR	= bld		# Unicos 8.x
 
 #############################################################################
