@@ -200,17 +200,6 @@ else
              x"/proc/net/ipv6_route"; then
       AC_MSG_RESULT([Linux IPv6])
 
-      AC_MSG_CHECKING([for GNU libc 2.1])
-      AC_EGREP_CPP(yes, [
-#include <features.h>
-#if __GLIBC__ >= 2 && __GLIBC_MINOR__ >= 1
-  yes
-#endif], [glibc=yes; AC_MSG_RESULT(yes)], AC_MSG_RESULT(no))
-
-      if test "$glibc" != "yes"; then
-          IPV6LIBS="-L/usr/inet6/lib -linet6"
-          IPV6INCLUDES="-I/usr/inet6/include"
-      fi
    else
       AC_MSG_RESULT([no])
       enable_ipv6=no
