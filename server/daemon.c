@@ -88,7 +88,7 @@ static void daemonize (void)
 }
 
 /* the sigchld signal handler */
-static RETSIGTYPE
+static void
 sigchld_handler(
   int   arg)
 {
@@ -104,39 +104,36 @@ sigchld_handler(
 
   /* reset the signal handler -- some older systems remove the signal
      handler upon use.  POSIX systems should not do this */
-  signal(SIGCHLD, (__sighandler_t)sigchld_handler);
-  return 0;
+  signal(SIGCHLD, sigchld_handler);
 }
 
-static RETSIGTYPE
+static void
 sighup_handler(
   int   arg)
 {
   hup_recvd = TRUE;
-  signal(SIGHUP, (__sighandler_t)sighup_handler);
-  return 0;
+  signal(SIGHUP, sighup_handler);
 }
 
-static RETSIGTYPE
+static void
 exit_handler(
   int   arg)
 {
   log(L_LOG_NOTICE, UNKNOWN, "Exiting");
   delpid();
   exit(0);
-  return 0;
 }
 
 static void set_sighup (void)
 {
-  signal(SIGHUP, (__sighandler_t)sighup_handler);
+  signal(SIGHUP, sighup_handler);
 }
 
 /* this actually handles all the normal quitting signals */
 static void set_exithandler (void)
 {
-  signal(SIGINT, (__sighandler_t)exit_handler);
-  signal(SIGTERM, (__sighandler_t)exit_handler);
+  signal(SIGINT, exit_handler);
+  signal(SIGTERM, exit_handler);
 }
 
 static void reinit (void)
@@ -166,7 +163,7 @@ void no_zombies (void)
 {
   /* we need the sigchld handler to limit the number of concurrent
      processes */
-  signal(SIGCHLD, (__sighandler_t)sigchld_handler);
+  signal(SIGCHLD, sigchld_handler);
 }
 
 int run_daemon (void)
