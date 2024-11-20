@@ -49,6 +49,7 @@
  * regular-expression syntax might require a total rethink.
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <regexp.h>
@@ -222,7 +223,6 @@ regcomp(char *exp)
         register char *longest;
         register int len;
         int flags;
-        extern void *malloc();
 
         if (exp == NULL)
                 FAIL("NULL argument");
