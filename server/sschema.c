@@ -332,7 +332,7 @@ create_schema_file(
     return(rval);
   }
 
-  dl_list_default(&response, FALSE, simple_destroy_data);
+  dl_list_default(&response, FALSE, (dl_destroy_fn)simple_destroy_data);
   
   /* Connect to the master server */
   connect_server(server->addr, server->port, &sockfd);

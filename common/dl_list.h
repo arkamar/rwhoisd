@@ -16,6 +16,8 @@
 /* definitions */
 
 /* types */
+typedef int (*dl_destroy_fn)(void *);
+
 typedef struct _dl_node_type
 {
   struct _dl_node_type *next;
@@ -29,7 +31,7 @@ typedef struct _dl_list_type
   dl_node_type        *tail;
   dl_node_type        *current;
   int                 destroy_head_flag;
-  int                 (*destroy_data) PROTO((void *data));
+  dl_destroy_fn       destroy_data;
 } dl_list_type;
 
 /* prototypes */
@@ -41,7 +43,7 @@ typedef struct _dl_list_type
    function pointer to the data free()ing routine. */
 int dl_list_default PROTO((dl_list_type *list,
                            int destroy_head_flag,
-                           int (*destroy_data)()));
+                           dl_destroy_fn destroy_data));
 
 /* returns the value (a pointer to the data element) at the current
    position */ 

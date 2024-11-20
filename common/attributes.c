@@ -549,7 +549,7 @@ add_attribute(
   if( !dl_list_last(attr_list))
   {
     /* this is the first entry, so default the list */
-    dl_list_default(attr_list, FALSE, destroy_attr_data);
+    dl_list_default(attr_list, FALSE, (dl_destroy_fn)destroy_attr_data);
   }
   else
   {
@@ -600,7 +600,7 @@ add_global_attribute(
     if (! dl_list_last(attr_ref_list))
     {
       *global_id = 0;
-      dl_list_default(attr_ref_list, FALSE, destroy_attr_ref_data);
+      dl_list_default(attr_ref_list, FALSE, (dl_destroy_fn)destroy_attr_ref_data);
     }
     else
     {
@@ -612,7 +612,7 @@ add_global_attribute(
     ref = xcalloc(1, sizeof(*ref));
 
     class_list = &(ref->class_list);
-    dl_list_default(class_list, FALSE, null_destroy_data);
+    dl_list_default(class_list, FALSE, (dl_destroy_fn)null_destroy_data);
     dl_list_append(class_list, class);
   
     ref->name = xstrdup(attr->name);

@@ -43,7 +43,7 @@ soa_parse_args(
   }
 
   soa_arg = xcalloc(1, sizeof(*soa_arg));
-  dl_list_default(soa_arg, TRUE, null_destroy_data);
+  dl_list_default(soa_arg, TRUE, (dl_destroy_fn)null_destroy_data);
   
   for (i = 0; i < argc; i++)
   {

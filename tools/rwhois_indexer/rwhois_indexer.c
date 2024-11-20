@@ -69,8 +69,8 @@ delete_index_files(
   file_struct  *index_file;
   int          not_done;
   
-  dl_list_default(&master_file_list, FALSE, destroy_file_struct_data);
-  dl_list_default(&index_file_list, FALSE, destroy_file_struct_data);
+  dl_list_default(&master_file_list, FALSE, (dl_destroy_fn)destroy_file_struct_data);
+  dl_list_default(&index_file_list, FALSE, (dl_destroy_fn)destroy_file_struct_data);
 
   /* get the index file_structs for the particular class */
   if (! get_file_list(class, auth_area, &master_file_list))

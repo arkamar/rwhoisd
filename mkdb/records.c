@@ -133,7 +133,7 @@ mkdb_translate_anon_record(
   rec->class        = class;
 
   av_list           = &(rec->av_pair_list);
-  dl_list_default(av_list, FALSE, destroy_av_pair_data);
+  dl_list_default(av_list, FALSE, (dl_destroy_fn)destroy_av_pair_data);
   
   /* handle auth_area */
   anon_av = find_anon_auth_area_in_rec(anon);
@@ -446,7 +446,7 @@ copy_record(
   bcopy(rec, copy, sizeof(*copy));
 
   /* copy the av_pair list */
-  dl_list_default(&(copy->av_pair_list), FALSE, destroy_av_pair_data);
+  dl_list_default(&(copy->av_pair_list), FALSE, (dl_destroy_fn)destroy_av_pair_data);
 
   not_done = dl_list_first(&(rec->av_pair_list));
   while (not_done)

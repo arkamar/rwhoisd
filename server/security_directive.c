@@ -158,7 +158,7 @@ static security_arg_struct *security_parse_args (char *str)
     if (argc > 3)
     {
       prs->data_list = (dl_list_type *)xcalloc(1, sizeof(dl_list_type));
-      dl_list_default(prs->data_list, TRUE, simple_destroy_data);
+      dl_list_default(prs->data_list, TRUE, (dl_destroy_fn)simple_destroy_data);
       
       for (i = 3; i < argc; i++)
       {

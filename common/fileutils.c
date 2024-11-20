@@ -935,7 +935,7 @@ split_path_into_list(char *path)
   /* create linked list head */
   path_list = xcalloc(1, sizeof(*path_list));
 
-  dl_list_default(path_list, TRUE, simple_destroy_data);
+  dl_list_default(path_list, TRUE, (dl_destroy_fn)simple_destroy_data);
 
   token = strtok(path, "/");
   while(token)

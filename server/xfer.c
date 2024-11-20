@@ -141,7 +141,7 @@ static xfer_arg_struct *xfer_parse_args (char *str)
   }
 
   xs = xcalloc(1, sizeof(*xs));
-  dl_list_default(&(xs->xfer_class_list), FALSE, destroy_xfer_class_data);
+  dl_list_default(&(xs->xfer_class_list), FALSE, (dl_destroy_fn)destroy_xfer_class_data);
 
   if (STR_EQ(world, argv[0]))
   {
@@ -211,7 +211,7 @@ static xfer_arg_struct *xfer_parse_args (char *str)
       if (STR_EQ(attr, "class"))
       {
         cur_xclass = xcalloc(1, sizeof(*cur_xclass));
-        dl_list_default(&(cur_xclass->attr_list), FALSE, null_destroy_data);
+        dl_list_default(&(cur_xclass->attr_list), FALSE, (dl_destroy_fn)null_destroy_data);
         
         class = find_class_by_name(aa->schema, value);
         if (!class)
@@ -410,8 +410,8 @@ xfer_class(
     return FALSE;
   }
 
-  dl_list_default(&master_file_list, FALSE, destroy_file_struct_data);
-  dl_list_default(&file_list, FALSE, destroy_file_struct_data);
+  dl_list_default(&master_file_list, FALSE, (dl_destroy_fn)destroy_file_struct_data);
+  dl_list_default(&file_list, FALSE, (dl_destroy_fn)destroy_file_struct_data);
   
   /* pull all of the data files for the current class */
   if (!get_file_list(class, aa, &master_file_list))

@@ -130,7 +130,7 @@ init_slave_state_list(
     return;
   }
  
-  dl_list_default(&slave_state_list, FALSE, destroy_slave_state_data);
+  dl_list_default(&slave_state_list, FALSE, (dl_destroy_fn)destroy_slave_state_data);
  
   not_done = dl_list_first(slave_aa_list);
   while (not_done)

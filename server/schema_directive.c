@@ -87,7 +87,7 @@ static schema_arg_struct *schema_parse_args (char *str)
   }
 
   ss->class_list = xcalloc(1, sizeof(*ss->class_list));
-  dl_list_default(ss->class_list, TRUE, null_destroy_data);
+  dl_list_default(ss->class_list, TRUE, (dl_destroy_fn)null_destroy_data);
   
   for (i = 1; i < argc; i++) 
   {

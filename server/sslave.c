@@ -40,7 +40,7 @@ int init_slave_auth_areas (void)
     return(FALSE);
   }
  
-  dl_list_default(&slave_aa_list, FALSE, null_destroy_data);
+  dl_list_default(&slave_aa_list, FALSE, (dl_destroy_fn)null_destroy_data);
  
   not_done = dl_list_first(aa_list);
   while (not_done)
@@ -310,7 +310,7 @@ int update_slave_auth_areas (void)
     return(FALSE);
   }
  
-  dl_list_default(&slave_aa_list, FALSE, null_destroy_data);
+  dl_list_default(&slave_aa_list, FALSE, (dl_destroy_fn)null_destroy_data);
  
   not_done = dl_list_first(aa_list);
   while (not_done)

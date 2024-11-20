@@ -183,7 +183,7 @@ write_all_config_files(
 
   paths_list = xcalloc(1, sizeof(*paths_list));
 
-  if (!dl_list_default(paths_list, TRUE, simple_destroy_data)) 
+  if (!dl_list_default(paths_list, TRUE, (dl_destroy_fn)simple_destroy_data)) 
   {
     log(L_LOG_ERR, CONFIG, 
         "Error in creating temporary configuration path names list");
@@ -433,7 +433,7 @@ static int verify_all_path_names (void)
 
   paths_list = xcalloc(1, sizeof(*paths_list));
 
-  if (!dl_list_default(paths_list, TRUE, simple_destroy_data)) 
+  if (!dl_list_default(paths_list, TRUE, (dl_destroy_fn)simple_destroy_data)) 
   {
     log(L_LOG_ERR, CONFIG, 
       "Error in creating file and directory paths list");

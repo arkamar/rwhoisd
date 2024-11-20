@@ -221,7 +221,7 @@ append_class(
   if (!dl_list_last(class_list))
   {
     class->id = 0;
-    dl_list_default(class_list, FALSE, destroy_class_data);
+    dl_list_default(class_list, FALSE, (dl_destroy_fn)destroy_class_data);
   }
   else
   {
@@ -452,7 +452,7 @@ add_class(
   if (!dl_list_last(class_list))
   {
     class->id = 0;
-    dl_list_default(class_list, FALSE, destroy_class_data);
+    dl_list_default(class_list, FALSE, (dl_destroy_fn)destroy_class_data);
   }
   else
   {
@@ -538,7 +538,7 @@ add_global_class(
     {
       class_ref_list = xcalloc(1, sizeof(*class_ref_list));
 
-      dl_list_default(class_ref_list, TRUE, destroy_class_ref_data);
+      dl_list_default(class_ref_list, TRUE, (dl_destroy_fn)destroy_class_ref_data);
     }
 
     /* allocate and set the new node */
@@ -547,7 +547,7 @@ add_global_class(
     ref->name = xstrdup(class->name);
     
     aa_list = &(ref->auth_area_list);
-    dl_list_default(aa_list, FALSE, null_destroy_data);
+    dl_list_default(aa_list, FALSE, (dl_destroy_fn)null_destroy_data);
     
     dl_list_append(aa_list, aa);
 

@@ -93,7 +93,7 @@ static class_arg_struct *class_parse_args (char *str)
   }
 
   cs->class_list = xcalloc(1, sizeof(*cs->class_list));
-  dl_list_default(cs->class_list, TRUE, null_destroy_data);
+  dl_list_default(cs->class_list, TRUE, (dl_destroy_fn)null_destroy_data);
   
   for (i = 1; i < argc; i++) 
   {

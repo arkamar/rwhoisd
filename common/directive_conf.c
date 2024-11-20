@@ -364,7 +364,7 @@ void initialize_directive_list (void)
     dl_list_destroy(&directive_list);
   }
   
-  dl_list_default(&directive_list, FALSE, destroy_directive_data);
+  dl_list_default(&directive_list, FALSE, (dl_destroy_fn)destroy_directive_data);
 }
 
 

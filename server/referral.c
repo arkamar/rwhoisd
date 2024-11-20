@@ -355,7 +355,7 @@ get_down_referral(
       break;
     }
 
-    dl_list_default(&record_list, FALSE, destroy_record_data);
+    dl_list_default(&record_list, FALSE, (dl_destroy_fn)destroy_record_data);
 
     search(query, &record_list, 1, &ret_code);
 
@@ -621,7 +621,7 @@ refer_query(
     return(rval);
   }
 
-  dl_list_default(&referral_list, FALSE, destroy_referral_data);
+  dl_list_default(&referral_list, FALSE, (dl_destroy_fn)destroy_referral_data);
 
   /* Traverse the query tree to get referral for a particular
      query term.  Break the loop on the first hit. */
